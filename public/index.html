@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HackCourt - Legal Counsel for Technical Decisions</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Court Header -->
+    <header class="court-chamber">
+        <div class="chamber-header">
+            <div class="court-seal">
+                <div class="scales-icon">⚖</div>
+                <div class="court-name">
+                    <h1 class="court-title">HackCourt</h1>
+                    <div class="court-subtitle">Technical Decision Tribunal</div>
+                </div>
+            </div>
+            
+            <!-- Navigation Tabs Inside Header -->
+            <nav class="header-navigation">
+                <div class="nav-tabs">
+                    <button type="button" class="nav-tab active" data-tab="home" id="home-tab">
+                        <span class="tab-icon">🏛️</span>
+                        <span class="tab-text">Home</span>
+                    </button>
+                    <button type="button" class="nav-tab" data-tab="compare" id="compare-tab">
+                        <span class="tab-icon">⚖️</span>
+                        <span class="tab-text">Compare Two Options</span>
+                    </button>
+                    <button type="button" class="nav-tab" data-tab="counsel" id="counsel-tab">
+                        <span class="tab-icon">📋</span>
+                        <span class="tab-text">Seek Technical Counsel</span>
+                    </button>
+                    <button type="button" class="nav-tab" data-tab="precedents" id="precedents-tab">
+                        <span class="tab-icon">📚</span>
+                        <span class="tab-text">Filed Precedents</span>
+                    </button>
+                </div>
+            </nav>
+            
+            <!-- Theme Toggle -->
+            <div class="theme-controls">
+                <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <span class="theme-icon dark-icon">🌙</span>
+                    <span class="theme-icon light-icon">☀️</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="court-motto">
+            "In Code We Trust, In Logic We Decide"
+        </div>
+    </header>
+
+    <!-- Header Collapse Sentinel - IntersectionObserver target -->
+    <div class="header-sentinel" id="header-sentinel"></div>
+
+    <!-- Tab Content Sections -->
+    
+    <!-- HOME TAB -->
+    <section class="tab-content active" id="home-content">
+        <div class="home-section">
+            <div class="court-introduction reveal">
+                <h2 class="intro-title">Welcome to HackCourt</h2>
+                <div class="intro-subtitle">Superior Court of Technical Decisions</div>
+                
+                <div class="court-description">
+                    <p>HackCourt provides authoritative technical guidance for hackathon teams facing critical technology decisions. Our distinguished judges evaluate your constraints and deliver reasoned verdicts to guide your project toward success.</p>
+                </div>
+                
+                <div class="court-motto-large">
+                    "In Code We Trust, In Logic We Decide"
+                </div>
+                
+                <div class="court-services reveal">
+                    <div class="service-card reveal-stagger-1">
+                        <div class="service-icon">⚖️</div>
+                        <div class="service-title">Compare Two Options</div>
+                        <div class="service-description">Present competing technical approaches for judicial evaluation</div>
+                    </div>
+                    
+                    <div class="service-card reveal-stagger-2">
+                        <div class="service-icon">📋</div>
+                        <div class="service-title">Seek Technical Counsel</div>
+                        <div class="service-description">Request expert guidance on technology stack selection</div>
+                    </div>
+                    
+                    <div class="service-card reveal-stagger-3">
+                        <div class="service-icon">📚</div>
+                        <div class="service-title">Review Filed Precedents</div>
+                        <div class="service-description">Study precedent cases for similar technical decisions</div>
+                    </div>
+                </div>
+                
+                <div class="enter-court-section">
+                    <button type="button" class="enter-court-btn" id="enter-court-btn">
+                        <span class="btn-icon">⚖️</span>
+                        <span class="btn-text">Enter the Court</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- How HackCourt Works -->
+            <div class="info-section reveal">
+                <h3 class="info-title">How HackCourt Works</h3>
+                <div class="info-content">
+                    <div class="info-steps reveal">
+                        <div class="info-step reveal-stagger-1">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Present Your Case</h4>
+                                <p>Submit your technical constraints: timeline, team size, skill level, and project goals.</p>
+                            </div>
+                        </div>
+                        <div class="info-step reveal-stagger-2">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Choose Your Judge</h4>
+                                <p>Select Hon. Justice Reliability for proven solutions or Hon. Justice Innovation for cutting-edge approaches.</p>
+                            </div>
+                        </div>
+                        <div class="info-step reveal-stagger-3">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Receive Verdict</h4>
+                                <p>Get a reasoned judicial decision with supporting evidence and implementation guidance.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- When to Use Compare vs Counsel -->
+            <div class="info-section reveal">
+                <h3 class="info-title">When to Use Compare vs Counsel</h3>
+                <div class="info-content">
+                    <div class="comparison-grid reveal">
+                        <div class="comparison-card reveal-stagger-1">
+                            <h4>⚖️ Compare Two Options</h4>
+                            <p>Use when you have specific competing approaches and need the court to determine which is superior for your constraints.</p>
+                            <ul>
+                                <li>React vs Vue for your team</li>
+                                <li>Microservices vs Monolith architecture</li>
+                                <li>TypeScript vs JavaScript for rapid prototyping</li>
+                            </ul>
+                        </div>
+                        <div class="comparison-card reveal-stagger-2">
+                            <h4>📋 Seek Technical Counsel</h4>
+                            <p>Use when you need expert guidance on technology stack selection without predetermined options.</p>
+                            <ul>
+                                <li>First-time hackathon team guidance</li>
+                                <li>Optimal stack for demo-focused projects</li>
+                                <li>Production-ready architecture recommendations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- The Judicial Bench -->
+            <div class="info-section reveal">
+                <h3 class="info-title">The Judicial Bench</h3>
+                <div class="info-content">
+                    <div class="judge-philosophy reveal">
+                        <div class="philosophy-card reveal-stagger-1">
+                            <h4>Hon. Justice Reliability</h4>
+                            <p class="judge-motto">"Proven solutions minimize risk and ensure project success."</p>
+                            <p>Prioritizes stability, established patterns, and minimal learning curves. Ideal for teams with tight deadlines or limited experience who need guaranteed results.</p>
+                        </div>
+                        <div class="philosophy-card reveal-stagger-2">
+                            <h4>Hon. Justice Innovation</h4>
+                            <p class="judge-motto">"Innovation and presentation impact create lasting impressions."</p>
+                            <p>Values cutting-edge technologies, demonstration appeal, and technical sophistication. Perfect for experienced teams seeking to impress judges and push boundaries.</p>
+                        </div>
+                    </div>
+                    <div class="disagreement-note">
+                        <p><em>The same constraints may yield different verdicts depending on judicial philosophy. Choose your judge based on your team's priorities and risk tolerance.</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARE TWO OPTIONS TAB -->
+    <section class="tab-content" id="compare-content">
+        <div class="case-intake">
+            <div class="section-header">
+                <h2 class="section-title">Compare Two Options</h2>
+                <div class="section-subtitle">Present competing technical approaches for judicial evaluation</div>
+            </div>
+            
+            <!-- Project Context MCQs (MANDATORY) -->
+            <div class="project-context-section">
+                <h3 class="context-title">Project Context</h3>
+                <div class="context-subtitle">Required information for court evaluation</div>
+                
+                <div class="mcq-grid reveal">
+                    <div class="mcq-section reveal-stagger-1">
+                        <label class="mcq-label">Hackathon Duration *</label>
+                        <div class="mcq-options">
+                            <label class="mcq-option">
+                                <input type="radio" name="compare-duration" value="24" checked required>
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">24 hours</span>
+                            </label>
+                            <label class="mcq-option">
+                                <input type="radio" name="compare-duration" value="36" required>
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">36 hours</span>
+                            </label>
+                            <label class="mcq-option">
+                                <input type="radio" name="compare-duration" value="48" required>
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">48 hours</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="mcq-section reveal-stagger-2">
+                        <label class="mcq-label">Team Size *</label>
+                        <div class="mcq-options">
+                            <label class="mcq-option">
+                                <input type="radio" name="compare-teamSize" value="solo" checked required>
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">Solo</span>
+                            </label>
+                            <label class="mcq-option">
+                                <input type="radio" name="compare-teamSize" value="small" required>
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">2–3 members</span>
+                            </label>
+                            <label class="mcq-option">
+                                <input type="radio" name="compare-teamSize" value="medium" required>
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">4–5 members</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="mcq-section reveal-stagger-3">
+                        <label class="mcq-label">Team Skill Level *</label>
+                        <div class="mcq-options">
+                            <label class="mcq-option">
+                                <input type="radio" name="compare-skillLevel" value="beginner" checked required>
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">Beginner</span>
+                            </label>
+                            <label class="mcq-option">
+                                <input type="radio" name="compare-skillLevel" value="intermediate" required>
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">Intermediate</span>
+                            </label>
+                            <label class="mcq-option">
+                                <input type="radio" name="compare-skillLevel" value="advanced" required>
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">Advanced</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="mcq-section reveal-stagger-4">
+                        <label class="mcq-label">Primary Goal *</label>
+                        <div class="mcq-options">
+                            <label class="mcq-option">
+                                <input type="radio" name="compare-primaryGoal" value="demo-first" checked required>
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">Demo-first</span>
+                            </label>
+                            <label class="mcq-option">
+                                <input type="radio" name="compare-primaryGoal" value="balanced" required>
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">Balanced</span>
+                            </label>
+                            <label class="mcq-option">
+                                <input type="radio" name="compare-primaryGoal" value="production-leaning" required>
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">Production-leaning</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Option Arguments -->
+            <div class="options-section">
+                <h3 class="options-title">Technical Arguments</h3>
+                <div class="options-subtitle">Present your competing technical approaches</div>
+                
+                <div class="options-grid reveal">
+                    <div class="option-section reveal-stagger-1">
+                        <label class="option-label">Option A (Plaintiff's Argument)</label>
+                        <textarea class="option-input" id="compare-option-a" placeholder="Describe the first technical option (e.g., React with TypeScript for rapid prototyping...)"></textarea>
+                    </div>
+                    
+                    <div class="option-section reveal-stagger-2">
+                        <label class="option-label">Option B (Defendant's Argument)</label>
+                        <textarea class="option-input" id="compare-option-b" placeholder="Describe the alternative technical option (e.g., Vue.js with JavaScript for team familiarity...)"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Judge Selection -->
+            <div class="judge-selection">
+                <div class="judge-label">Presiding Judge</div>
+                <div class="judge-options">
+                    <button type="button" class="judge-btn active" data-judge="reliability" id="compare-reliability-judge">
+                        <div class="judge-name">Hon. Justice Reliability</div>
+                        <div class="judge-specialty">Stability & Proven Solutions</div>
+                    </button>
+                    <button type="button" class="judge-btn" data-judge="demo" id="compare-demo-judge">
+                        <div class="judge-name">Hon. Justice Innovation</div>
+                        <div class="judge-specialty">Impact & Presentation</div>
+                    </button>
+                </div>
+            </div>
+
+            <button type="button" class="submit-case-btn" id="compare-submit-case">
+                <span class="btn-text">Present Case to Court</span>
+                <span class="btn-icon">⚖</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- SEEK TECHNICAL COUNSEL TAB -->
+    <section class="tab-content" id="counsel-content">
+        <div class="case-intake">
+            <div class="section-header">
+                <h2 class="section-title">Seek Technical Counsel</h2>
+                <div class="section-subtitle">Request expert guidance on technology stack selection</div>
+            </div>
+            
+            <!-- Advisory MCQ Form -->
+            <div class="advisory-form">
+                <div class="mcq-grid reveal">
+                    <div class="mcq-section reveal-stagger-1">
+                        <label class="mcq-label">Hackathon Duration</label>
+                        <div class="mcq-options">
+                            <label class="mcq-option">
+                                <input type="radio" name="counsel-duration" value="24" checked>
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">24 hours</span>
+                            </label>
+                            <label class="mcq-option">
+                                <input type="radio" name="counsel-duration" value="36">
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">36 hours</span>
+                            </label>
+                            <label class="mcq-option">
+                                <input type="radio" name="counsel-duration" value="48">
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">48 hours</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="mcq-section reveal-stagger-2">
+                        <label class="mcq-label">Team Size</label>
+                        <div class="mcq-options">
+                            <label class="mcq-option">
+                                <input type="radio" name="counsel-teamSize" value="solo" checked>
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">Solo</span>
+                            </label>
+                            <label class="mcq-option">
+                                <input type="radio" name="counsel-teamSize" value="small">
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">2–3 people</span>
+                            </label>
+                            <label class="mcq-option">
+                                <input type="radio" name="counsel-teamSize" value="medium">
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">4–5 people</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="mcq-section reveal-stagger-3">
+                        <label class="mcq-label">Team Skill Level</label>
+                        <div class="mcq-options">
+                            <label class="mcq-option">
+                                <input type="radio" name="counsel-skillLevel" value="beginner" checked>
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">Beginner</span>
+                            </label>
+                            <label class="mcq-option">
+                                <input type="radio" name="counsel-skillLevel" value="intermediate">
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">Intermediate</span>
+                            </label>
+                            <label class="mcq-option">
+                                <input type="radio" name="counsel-skillLevel" value="advanced">
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">Advanced</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="mcq-section reveal-stagger-4">
+                        <label class="mcq-label">Primary Goal</label>
+                        <div class="mcq-options">
+                            <label class="mcq-option">
+                                <input type="radio" name="counsel-primaryGoal" value="demo-first" checked>
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">Demo-first</span>
+                            </label>
+                            <label class="mcq-option">
+                                <input type="radio" name="counsel-primaryGoal" value="balanced">
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">Balanced</span>
+                            </label>
+                            <label class="mcq-option">
+                                <input type="radio" name="counsel-primaryGoal" value="production-leaning">
+                                <span class="mcq-custom"></span>
+                                <span class="mcq-text">Production-leaning</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-theme-section">
+                    <label class="theme-label">Project Theme / Idea (Optional)</label>
+                    <textarea class="theme-input" id="counsel-project-theme" placeholder="Brief description of your project idea (optional)..." rows="3"></textarea>
+                </div>
+            </div>
+            
+            <!-- Judge Selection -->
+            <div class="judge-selection">
+                <div class="judge-label">Presiding Judge</div>
+                <div class="judge-options">
+                    <button type="button" class="judge-btn active" data-judge="reliability" id="counsel-reliability-judge">
+                        <div class="judge-name">Hon. Justice Reliability</div>
+                        <div class="judge-specialty">Stability & Proven Solutions</div>
+                    </button>
+                    <button type="button" class="judge-btn" data-judge="demo" id="counsel-demo-judge">
+                        <div class="judge-name">Hon. Justice Innovation</div>
+                        <div class="judge-specialty">Impact & Presentation</div>
+                    </button>
+                </div>
+            </div>
+
+            <button type="button" class="submit-case-btn" id="counsel-submit-case">
+                <span class="btn-text">Present Case to Court</span>
+                <span class="btn-icon">⚖</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- FILED PRECEDENTS TAB -->
+    <section class="tab-content" id="precedents-content">
+        <div class="precedents-section">
+            <div class="section-header">
+                <h2 class="section-title">Filed Precedents</h2>
+                <div class="section-subtitle">Study precedent cases for similar technical decisions</div>
+            </div>
+            
+            <div class="precedent-grid reveal">
+                <button type="button" class="precedent-case reveal-stagger-1" data-case="flask-vs-fastapi">
+                    <div class="case-number">Case #2024-001</div>
+                    <div class="case-title">Flask v. FastAPI</div>
+                    <div class="case-summary">24-hour hackathon framework comparison</div>
+                    <div class="case-type-badge">Compare Options</div>
+                </button>
+                
+                <button type="button" class="precedent-case reveal-stagger-2" data-case="simple-vs-complex">
+                    <div class="case-number">Case #2024-002</div>
+                    <div class="case-title">Simplicity v. Architecture</div>
+                    <div class="case-summary">Minimal approach vs. enterprise patterns</div>
+                    <div class="case-type-badge">Compare Options</div>
+                </button>
+                
+                <button type="button" class="precedent-case reveal-stagger-3" data-case="beginner-advisory">
+                    <div class="case-number">Case #2024-003</div>
+                    <div class="case-title">Novice Team Guidance</div>
+                    <div class="case-summary">First-time hackathon technical counsel</div>
+                    <div class="case-type-badge advisory">Technical Counsel</div>
+                </button>
+                
+                <button type="button" class="precedent-case reveal-stagger-4" data-case="demo-focused">
+                    <div class="case-number">Case #2024-004</div>
+                    <div class="case-title">Demo Impact Strategy</div>
+                    <div class="case-summary">Advanced team seeking maximum presentation impact</div>
+                    <div class="case-type-badge advisory">Technical Counsel</div>
+                </button>
+                
+                <button type="button" class="precedent-case reveal-stagger-1" data-case="fullstack-dilemma">
+                    <div class="case-number">Case #2024-005</div>
+                    <div class="case-title">React v. Vue Dispute</div>
+                    <div class="case-summary">Frontend framework selection for team project</div>
+                    <div class="case-type-badge">Compare Options</div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Court Proceedings (Hidden until case submitted) -->
+    <div class="court-proceedings hidden" id="court-proceedings">
+        
+        <!-- Arguments Presented / Legal Consultation Memo -->
+        <section class="arguments-section" id="arguments-section">
+            <div class="section-header">
+                <h2 class="section-title">Arguments Presented</h2>
+                <div class="section-subtitle">Counsel's opening statements</div>
+            </div>
+            
+            <div class="arguments-grid" id="arguments-grid">
+                <!-- Arguments will be populated dynamically -->
+            </div>
+        </section>
+
+        <!-- Court's Ruling (RESTRUCTURED FOR ADVISORY) -->
+        <section class="ruling-section">
+            <div class="section-header">
+                <h2 class="section-title">Court's Ruling</h2>
+                <div class="section-subtitle">The honorable court's decision</div>
+            </div>
+            
+            <div class="ruling-card" id="ruling-card">
+                <div class="ruling-header">
+                    <div class="ruling-label">THE COURT FINDS IN FAVOR OF</div>
+                    <div class="confidence-seal" id="confidence-seal">
+                        <span class="confidence-text" id="confidence-text">HIGH CONFIDENCE</span>
+                    </div>
+                </div>
+                
+                <div class="ruling-decision">
+                    <div class="decision-option" id="decision-option">React with TypeScript</div>
+                </div>
+                
+                <!-- Recommended Technology Stack (Advisory Mode) -->
+                <div class="recommended-stack-section" id="recommended-stack-section" style="display: none;">
+                    <div class="stack-label">Recommended Technology Stack</div>
+                    <div class="stack-name" id="stack-name">Rapid Prototype Stack</div>
+                    <ul class="stack-components" id="stack-components">
+                        <!-- Components will be populated dynamically -->
+                    </ul>
+                </div>
+                
+                <div class="ruling-rationale">
+                    <div class="rationale-label">Court's Reasoning</div>
+                    <div class="rationale-text" id="rationale-text">
+                        The court finds that React with TypeScript provides superior type safety and development velocity for the given constraints.
+                    </div>
+                </div>
+                
+                <div class="court-signature">
+                    <div class="signature-line">
+                        <span class="judge-signature" id="judge-signature">Hon. Justice Reliability</span>
+                        <span class="ruling-date" id="ruling-date">2025</span>
+                    </div>
+                </div>
+                
+                <!-- New Case Button -->
+                <div class="court-actions">
+                    <button type="button" class="new-case-btn" id="new-case-btn">
+                        <span class="btn-icon">📋</span>
+                        <span class="btn-text">File a New Case</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Warnings from the Bench -->
+        <section class="warnings-section" id="warnings-section" style="display: none;">
+            <div class="section-header">
+                <h2 class="section-title">Warning from the Bench</h2>
+                <div class="section-subtitle">Judicial caution regarding this decision</div>
+            </div>
+            
+            <div class="warning-notice" id="warning-notice">
+                <div class="warning-header">
+                    <div class="warning-icon">⚠</div>
+                    <div class="warning-title">JUDICIAL WARNING</div>
+                    <div class="risk-level" id="risk-level">MODERATE RISK</div>
+                </div>
+                
+                <div class="warning-content">
+                    <div class="court-caution">
+                        <span class="caution-prefix">The Court cautions:</span>
+                        <span class="warning-reason" id="warning-reason">
+                            This technical choice may introduce complexity beyond your team's current capabilities.
+                        </span>
+                    </div>
+                    
+                    <div class="judicial-recommendation" id="judicial-recommendation">
+                        <!-- Optional recommendation will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Evidence & Trade-offs -->
+        <section class="evidence-section">
+            <div class="section-header">
+                <h2 class="section-title">Evidence & Trade-offs</h2>
+                <div class="section-subtitle">Supporting documentation for the court's decision</div>
+            </div>
+            
+            <div class="evidence-grid" id="evidence-grid">
+                <!-- Evidence will be populated dynamically -->
+            </div>
+        </section>
+
+        <!-- Rejected Alternatives (Advisory Mode) -->
+        <section class="rejected-section" id="rejected-section" style="display: none;">
+            <div class="section-header">
+                <h2 class="section-title">Rejected Alternatives</h2>
+                <div class="section-subtitle">Technologies explicitly dismissed by the court</div>
+            </div>
+            
+            <div class="rejected-grid" id="rejected-grid">
+                <!-- Rejected alternatives will be populated dynamically -->
+            </div>
+        </section>
+
+    </div>
+
+    <script src="config.js"></script>
+    <script src="ai-engine.js"></script>
+    <script src="court-proceedings.js"></script>
+</body>
+</html>
