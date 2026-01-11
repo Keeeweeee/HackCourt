@@ -140,12 +140,6 @@ This project shipped because of **fast, disciplined iteration**, not guesswork.
 
 ---
 
-## 📸 Proof of Execution
-
-> Screenshots and recordings available in the submission dashboard.
-
----
-
 ## 📜 License
 
 MIT.  
