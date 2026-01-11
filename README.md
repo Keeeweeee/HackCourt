@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/assets/hackcourt-logo.png" width="120" />
+  <img src="public/assets/hackcourt-logo.png" width="360" />
 </p>
 
 <h1 align="center">⚖️ HackCourt</h1>
