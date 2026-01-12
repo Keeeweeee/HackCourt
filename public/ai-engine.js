@@ -309,30 +309,71 @@ function normalizeAIResponse(raw, mode, casePayload) {
         if (raw.evidence.length > 3) {
             raw.evidence = raw.evidence.slice(0, 3);
         }
+        
+        // Ensure proper advantage distribution
+        if (raw.evidence.length === 3) {
+            // Count current advantages
+            const advantages = raw.evidence.map(e => e.advantage || 'Comparable');
+            const strongCount = advantages.filter(a => a === 'Strong Advantage' || a === 'winner').length;
+            const comparableCount = advantages.filter(a => a === 'Comparable').length;
+            
+            // If all are "Comparable" or no "Strong Advantage", force proper distribution
+            if (strongCount === 0 || comparableCount === 3) {
+                raw.evidence[0].advantage = 'Strong Advantage';
+                raw.evidence[1].advantage = 'Moderate Advantage'; 
+                raw.evidence[2].advantage = 'Comparable';
+            }
+            // If more than one "Comparable", adjust
+            else if (comparableCount > 1) {
+                let comparableFixed = 0;
+                for (let i = 0; i < raw.evidence.length && comparableFixed < comparableCount - 1; i++) {
+                    if (raw.evidence[i].advantage === 'Comparable') {
+                        raw.evidence[i].advantage = i === 0 ? 'Strong Advantage' : 'Moderate Advantage';
+                        comparableFixed++;
+                    }
+                }
+            }
+        }
 
         // ---- FORCE REJECTED ALTERNATIVES ----
         if (!Array.isArray(raw.rejectedAlternatives)) {
             raw.rejectedAlternatives = [];
         }
         
-        // Inject sensible defaults if empty
+        // Inject judge-based defaults if empty or insufficient
         if (raw.rejectedAlternatives.length === 0) {
             if (casePayload.judge === 'reliability') {
                 raw.rejectedAlternatives = [
                     'Overly complex architectures',
-                    'Unstable or experimental frameworks'
+                    'Unstable or experimental frameworks',
+                    'Heavy microservice designs'
                 ];
             } else {
                 raw.rejectedAlternatives = [
                     'Plain static implementations',
-                    'Low-visual-impact stacks'
+                    'Low-visual-impact stacks',
+                    'Outdated UI frameworks'
                 ];
             }
         }
         
-        // Ensure at least 2 items
-        while (raw.rejectedAlternatives.length < 2) {
-            raw.rejectedAlternatives.push('Alternative approaches with higher risk profiles');
+        // Ensure minimum 3 items
+        while (raw.rejectedAlternatives.length < 3) {
+            if (casePayload.judge === 'reliability') {
+                const reliabilityDefaults = [
+                    'Overly complex architectures',
+                    'Unstable or experimental frameworks', 
+                    'Heavy microservice designs'
+                ];
+                raw.rejectedAlternatives.push(reliabilityDefaults[raw.rejectedAlternatives.length % reliabilityDefaults.length]);
+            } else {
+                const innovationDefaults = [
+                    'Plain static implementations',
+                    'Low-visual-impact stacks',
+                    'Outdated UI frameworks'
+                ];
+                raw.rejectedAlternatives.push(innovationDefaults[raw.rejectedAlternatives.length % innovationDefaults.length]);
+            }
         }
         
         // ---- FORCE WARNING SHAPE ----
@@ -543,6 +584,28 @@ function validateAdvisoryResponse(response) {
     // Check for compare contamination
     if (response.winner && ['Option A', 'Option B'].includes(response.winner)) {
         console.warn('AI Engine: Compare contamination detected in advisory response');
+        return null;
+    }
+    
+    // POST-VALIDATION SAFETY CHECKS
+    // If rejectedAlternatives.length < 3 → return null (trigger deterministic fallback)
+    if (response.rejectedAlternatives.length < 3) {
+        console.warn('AI Engine: Advisory mode requires minimum 3 rejectedAlternatives, triggering fallback');
+        return null;
+    }
+    
+    // If evidence.length !== 3 → return null
+    if (response.evidence.length !== 3) {
+        console.warn('AI Engine: Advisory mode requires exactly 3 evidence items, triggering fallback');
+        return null;
+    }
+    
+    // If no "Strong Advantage" exists → return null
+    const hasStrongAdvantage = response.evidence.some(e => 
+        e.advantage === 'Strong Advantage' || e.advantage === 'winner'
+    );
+    if (!hasStrongAdvantage) {
+        console.warn('AI Engine: Advisory mode requires at least one Strong Advantage, triggering fallback');
         return null;
     }
     

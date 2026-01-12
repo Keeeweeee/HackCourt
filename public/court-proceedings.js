@@ -1446,22 +1446,30 @@ function renderAdvisoryConsultation(caseData) {
             </div>
             
             <div class="evidence-grid">
-                ${config.evidence.map(evidence => `
-                    <div class="evidence-card reveal">
-                        <div class="evidence-header">
-                            <div class="evidence-label">Evidence ${evidence.id}</div>
-                            <div class="advantage-indicator ${evidence.advantage}">
-                                ${evidence.advantage === 'winner' ? 'Strong Advantage' : 
-                                  evidence.advantage === 'runner-up' ? 'Moderate Advantage' : 'Comparable'}
+                ${config.evidence.map(evidence => {
+                    // Ensure advantage field always exists after normalization
+                    const advantage = evidence.advantage || 'Comparable';
+                    const advantageText = advantage === 'winner' ? 'Strong Advantage' : 
+                                        advantage === 'runner-up' ? 'Moderate Advantage' : 
+                                        advantage === 'Strong Advantage' ? 'Strong Advantage' :
+                                        advantage === 'Moderate Advantage' ? 'Moderate Advantage' : 'Comparable';
+                    
+                    return `
+                        <div class="evidence-card reveal">
+                            <div class="evidence-header">
+                                <div class="evidence-label">Evidence ${evidence.id}</div>
+                                <div class="advantage-indicator ${advantage}">
+                                    ${advantageText}
+                                </div>
+                            </div>
+                            <div class="evidence-title">${evidence.title}</div>
+                            <div class="evidence-explanation">${evidence.explanation}</div>
+                            <div class="evidence-beneficiary">
+                                Supports: <span class="beneficiary-name">${evidence.beneficiary || 'Recommended Stack'}</span>
                             </div>
                         </div>
-                        <div class="evidence-title">${evidence.title}</div>
-                        <div class="evidence-explanation">${evidence.explanation}</div>
-                        <div class="evidence-beneficiary">
-                            Supports: <span class="beneficiary-name">${evidence.beneficiary || 'Recommended Stack'}</span>
-                        </div>
-                    </div>
-                `).join('')}
+                    `;
+                }).join('')}
             </div>
         </section>
 
@@ -1473,15 +1481,19 @@ function renderAdvisoryConsultation(caseData) {
             </div>
             
             <div class="rejected-grid">
-            ${config.rejectedAlternatives.map(alt => `
-                <div class="rejected-card reveal">
-                <div class="rejected-header">
-                    <div class="rejected-label">Rejected</div>
-                </div>
-                <div class="rejected-name">${alt.name}</div>
-                <div class="rejected-reason">${alt.reason}</div>
-                </div>
-            `).join('')}
+            ${config.rejectedAlternatives.map(alt => {
+                // Treat each item as STRING ONLY - do NOT assume object shape
+                const altText = typeof alt === 'string' ? alt : (alt.name || alt.toString());
+                return `
+                    <div class="rejected-card reveal">
+                        <div class="rejected-header">
+                            <div class="rejected-label">Rejected</div>
+                        </div>
+                        <div class="rejected-name">${altText}</div>
+                        <div class="rejected-reason">Dismissed by the court as unsuitable for the given constraints</div>
+                    </div>
+                `;
+            }).join('')}
             </div>
         </section>
     `;
