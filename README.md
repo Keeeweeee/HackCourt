@@ -126,6 +126,95 @@ HackCourt:
 
 ---
 
+## 🎥 Live Demo
+
+👉 https://hack-court-git-main-keeeweees-projects.vercel.app
+
+
+## 🔑 Enabling AI Judgments (Optional but Cool)
+
+To enable AI-powered rulings in the live demo, you’ll need a **free Groq API key**.
+
+### Step 1: Get a Groq API Key
+
+1. Go to **[https://console.groq.com](https://console.groq.com)**
+2. Sign in (Google works. No billing)
+3. Create an API key
+4. Copy it.
+
+---
+
+### Step 2: Add the API Key (No Reload Required)
+
+HackCourt reads the API key **directly from your browser**.
+
+#### Option A: Via Browser Console (Recommended for Live Demo)
+
+1. Open the live demo
+2. Open **DevTools** (Ctrl+Shift+I) → **Console**
+3. Paste this:
+
+```js
+localStorage.setItem("groq-api-key", "PASTE_YOUR_API_KEY_HERE");
+```
+
+4. Hit Enter
+5. Refresh the page
+
+That’s it.
+AI mode is now active.
+
+---
+
+#### Option B: Disable AI (Go Pure Logic Mode)
+
+If you want to **turn AI off** and use only deterministic rulings:
+
+```js
+localStorage.removeItem("groq-api-key");
+```
+
+Refresh.
+HackCourt will immediately fall back to rule-based decisions.
+
+---
+
+## 🧠 What Happens Under the Hood (So You Trust It)
+
+HackCourt follows this decision flow:
+
+```
+User Input
+   ↓
+Groq AI (if API key exists)
+   ↓ (fails / invalid / slow)
+Deterministic Judge Engine
+```
+
+* AI responses are **strictly validated**
+* Invalid or low-quality AI output is **discarded**
+* Deterministic logic **always guarantees a ruling**
+
+The court **never crashes**. Worst case, it becomes boring. That’s acceptable.
+
+---
+
+## 🧪 Want to Prove It Works?
+
+Try running the **same case twice**:
+
+* Once with the API key set
+* Once without
+
+You’ll see:
+
+* AI gives nuanced, judge-flavored reasoning
+* Deterministic mode gives consistent, explainable rulings
+
+Both are valid. The court respects both paths.
+
+---
+
 ## 🧠 Powered by Kiro
 
 Kiro accelerated:
@@ -144,8 +233,7 @@ Fantastic. The chaos deserves documentation. Here’s a **drop-in README section
 
 ## 🚀 Running HackCourt Locally
 
-HackCourt is frontend-only. No backend. No database. No mercy.
-If you can open a browser, you can run this.
+HackCourt is frontend-only. No backend. No database.
 
 ### 1️⃣ Clone the repo
 
