@@ -154,3 +154,18 @@ HackCourt is a technical decision assistant designed specifically for hackathon 
 8. THE HackCourt SHALL never render raw AI text directly and SHALL always use existing render functions
 9. THE HackCourt SHALL maintain strict mode separation ensuring AI responses conform to Compare vs Advisory output contracts
 10. THE HackCourt SHALL implement the AI engine as a single async function getAIVerdict(casePayload) in a separate ai-engine.js file
+
+### Requirement 12: AI Advisory Output Quality Enforcement
+
+**User Story:** As a hackathon participant using Advisory Mode, I want consistent and reliable output structure from AI recommendations, so that I always receive complete information in a predictable format that the UI can properly display.
+
+#### Acceptance Criteria
+
+1. WHEN in Advisory mode, THE AI_Engine SHALL always return exactly 3 evidence items in the evidence array
+2. WHEN in Advisory mode, THE AI_Engine SHALL ensure evidence advantage distribution includes at least one "Strong Advantage" and no more than one "Comparable"
+3. WHEN in Advisory mode, THE AI_Engine SHALL always return rejectedAlternatives as a non-empty array with minimum 3 items
+4. WHEN AI responses violate quality constraints, THE HackCourt SHALL normalize the response using judge-based defaults
+5. WHEN normalization fails to meet quality standards, THE HackCourt SHALL trigger deterministic fallback instead of rendering invalid data
+6. THE HackCourt SHALL treat rejectedAlternatives items as strings only and SHALL NOT assume object structure during rendering
+7. WHEN rendering evidence items, THE HackCourt SHALL ensure advantage field always exists after normalization
+8. THE HackCourt SHALL never display "undefined" values or incomplete data structures in Advisory Mode output

@@ -103,6 +103,7 @@ body {
     filter: saturate(0.7);
 }
 
+
 /* Court Chamber Header */
 .court-chamber {
     background: var(--bg-secondary);
@@ -531,12 +532,7 @@ section {
     transition: all 0.3s ease;
 }
 
-/* Responsive MCQ Options */
-@media (max-width: 767px) {
-    .mcq-options {
-        grid-template-columns: 1fr;
-    }
-}
+/* Responsive MCQ Options - consolidated into main mobile section below */
 
 /* Judge Selection */
 .judge-selection {
@@ -1198,136 +1194,597 @@ section {
     animation: fadeInUp 0.6s ease-out;
 }
 
-/* Responsive Design */
+/* ========================================
+   MOBILE-FIRST RESPONSIVE DESIGN
+   ======================================== */
+
+/* Global Mobile Text Optimization */
 @media (max-width: 768px) {
-    .chamber-header {
-        flex-direction: column;
-        gap: 1rem;
+    /* Prevent text breaking and ensure proper wrapping */
+    h1, h2, h3, h4, h5, h6 {
+        word-break: normal;
+        overflow-wrap: break-word;
+        hyphens: none;
+    }
+    
+    /* Ensure all text content wraps properly */
+    p, span, div {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+}
+
+/* Mobile Breakpoint: ≤768px (Tablets & Large Phones) */
+@media (max-width: 768px) {
+    
+    /* ===== HEADER / COURT CHAMBER ===== */
+    .court-chamber {
+        padding: 1rem 1rem 0.75rem;
         text-align: center;
     }
     
-    .header-navigation .nav-tabs {
+    .court-chamber.scrolled {
+        padding: 0.5rem 1rem 0.25rem;
+    }
+    
+    /* Stack header elements vertically */
+    .chamber-header {
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 1rem;
+        align-items: center;
+        text-align: center;
     }
     
-    .header-navigation .nav-tab {
-        padding: 0.5rem 0;
+    /* Logo + Title Section */
+    .court-seal {
+        gap: 1rem;
+        align-items: center;
+        justify-content: center;
     }
     
-    .header-navigation .tab-text {
-        font-size: 0.75rem;
+    .scales-icon {
+        font-size: 2.5rem;
+    }
+    
+    .court-chamber.scrolled .scales-icon {
+        font-size: 1.8rem;
+    }
+    
+    /* Title Text Optimization */
+    .court-name {
+        text-align: center;
+        max-width: 100%;
     }
     
     .court-title {
         font-size: 2.2rem;
+        line-height: 1.1;
+        word-break: normal;
+        text-align: center;
+        /* Fix title breaking - remove restrictive max-width */
+        max-width: 90vw;
+        overflow-wrap: break-word;
+        hyphens: none;
+        flex-shrink: 0;
+        margin: 0 auto 0.25rem;
+    }
+    .court-name,
+    .court-seal,
+    .chamber-header {
+        min-width: 0;
+        width: 100%;
+        flex-shrink: 0;
     }
     
-    /* Reduce padding on mobile for compare and counsel */
-    #compare-content,
-    #counsel-content {
+    .court-chamber.scrolled .court-title {
+        font-size: 1.5rem;
+        max-width: 200px;
+    }
+    
+    /* Hide subtitle and motto on mobile for cleaner look */
+    .court-subtitle,
+    .court-motto {
+        display: none;
+    }
+    
+    /* ===== NAVIGATION ROW ===== */
+    .header-navigation {
+        order: 2;
+        width: 100%;
+    }
+    
+    .header-navigation .nav-tabs {
+        display: flex;
+        justify-content: space-evenly;
+        gap: 0;
+        width: 100%;
+        padding: 0;
+    }
+    
+    .header-navigation .nav-tab {
+        flex: 1;
+        min-width: 0;
+        padding: 0.75rem 0.5rem;
+        border-bottom: 2px solid transparent;
+        text-align: center;
+        /* Touch-friendly hit areas */
+        min-height: 44px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25rem;
+    }
+    
+    .header-navigation .tab-icon {
+        font-size: 1.2rem;
+    }
+    
+    .header-navigation .tab-text {
+        font-size: 0.7rem;
+        line-height: 1;
+        letter-spacing: 0.02em;
+    }
+    
+    /* ===== THEME TOGGLE ===== */
+    .theme-controls {
+        order: 3;
+        margin-top: 0.5rem;
+    }
+    
+    .theme-toggle {
+        padding: 0.4rem 0.8rem;
+        min-width: 50px;
+        height: 36px;
+    }
+    
+    /* ===== BACKGROUND IMAGE MOBILE OPTIMIZATION ===== */
+    body {
+        background-position: center top, center center;
+        background-size: cover, cover;
+        /* Prevent horizontal scroll */
+        overflow-x: hidden;
+    }
+    
+    /* ===== SECTION SPACING ===== */
+    section {
         padding: 2rem 1rem;
     }
     
+    .court-proceedings section {
+        padding: 1.5rem 1rem;
+    }
+    
+    /* ===== HERO / INTRO CARDS ===== */
+    .home-section {
+        padding: 1rem;
+        min-height: 60vh; /* Ensure background visibility */
+    }
+    
+    .court-introduction {
+        padding: 1.25rem;
+        margin: 0;
+        max-width: none;
+        text-align: center;
+        /* Preserve background */
+        background: rgba(26, 26, 26, 0.6);
+        backdrop-filter: blur(8px);
+        border-radius: 12px;
+        border: 1px solid var(--border-primary);
+    }
+    
+    /* Ensure light theme background is preserved */
+    [data-theme="light"] .court-introduction {
+        background: rgba(255, 255, 255, 0.75);
+    }
+    
+    .info-section {
+        padding: 2rem 1.5rem;
+        margin: 1.5rem 0;
+        max-width: none;
+        text-align: center;
+    }
+    
+    .precedents-section {
+        padding: 2rem 1.5rem;
+        margin: 1.5rem 0;
+        max-width: none;
+    }
+    
+    /* ===== CONTENT AREAS ===== */
+    #compare-content,
+    #counsel-content {
+        padding: 1.5rem 1rem;
+    }
+    
+    .case-intake {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .project-context-section,
+    .options-section,
+    .advisory-form {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* ===== GRID LAYOUTS TO SINGLE COLUMN ===== */
     .case-type-options,
     .judge-options,
-    .arguments-grid {
-        grid-template-columns: 1fr;
+    .arguments-grid,
+    .evidence-grid,
+    .rejected-grid,
+    .precedent-grid,
+    .court-services,
+    .info-steps,
+    .comparison-grid,
+    .judge-philosophy,
+    .mcq-grid,
+    .options-grid {
+        grid-template-columns: 1fr !important;
         gap: 1rem;
     }
     
+    /* ===== CARD OPTIMIZATIONS ===== */
+    .argument-card,
+    .evidence-card,
+    .rejected-card,
+    .service-card,
+    .comparison-card,
+    .philosophy-card,
+    .precedent-case {
+        padding: 1.25rem;
+        /* Fix card overflow */
+        box-sizing: border-box;
+        overflow: hidden;
+        width: 100%;
+    }
+    
     .ruling-card {
-        padding: 2rem 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .consultation-memo {
+        padding: 1.5rem;
+    }
+    
+    /* ===== TYPOGRAPHY MOBILE OPTIMIZATION ===== */
+    .section-title {
+        font-size: 1.8rem;
+        line-height: 1.2;
+        text-align: center;
+    }
+    
+    .intro-title {
+        font-size: 2rem;
+        line-height: 1.2;
+        text-align: center;
+        /* Fix title breaking */
+        max-width: 90vw;
+        overflow-wrap: break-word;
+        word-break: normal;
+        hyphens: none;
+        flex-shrink: 0;
+        margin: 0 auto 0.5rem;
+    }
+    
+    .info-title {
+        font-size: 1.5rem;
+        line-height: 1.3;
+        text-align: center;
     }
     
     .decision-option {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+        line-height: 1.1;
+        text-align: center;
+        word-break: normal;
     }
     
+    .rationale-text {
+        font-size: 1rem;
+        line-height: 1.5;
+        padding: 0;
+        text-align: center;
+    }
+    
+    /* ===== BUTTONS FULL WIDTH ===== */
+    .submit-case-btn,
+    .enter-court-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .new-case-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.875rem 1.25rem;
+        font-size: 0.9rem;
+    }
+    
+    /* ===== FORM ELEMENTS ===== */
+    .form-input,
+    .option-input,
+    .theme-input {
+        font-size: 16px; /* Prevent iOS zoom */
+        padding: 1rem;
+        min-height: 80px;
+    }
+    
+    .mcq-option {
+        padding: 1rem 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* ===== CASE TYPE & JUDGE BUTTONS ===== */
+    .case-type-btn,
+    .judge-btn {
+        padding: 1.25rem;
+        text-align: center;
+        width: 100%;
+    }
+    
+    /* ===== SIGNATURE LINE MOBILE ===== */
     .signature-line {
         flex-direction: column;
         gap: 0.5rem;
         text-align: center;
     }
     
-    .evidence-grid {
-        grid-template-columns: 1fr;
+    /* ===== PRECEDENT CASES ===== */
+    .case-type-badge {
+        position: static;
+        display: inline-block;
+        margin-top: 0.75rem;
     }
     
-    /* Home page responsive */
-    .info-steps {
-        grid-template-columns: 1fr;
+    /* ===== PREVENT TEXT BREAKING ===== */
+    * {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
     
-    .comparison-grid {
-        grid-template-columns: 1fr;
+    .court-title,
+    .section-title,
+    .intro-title,
+    .decision-option {
+        word-break: normal;
+        hyphens: none;
     }
-    
-    .judge-philosophy {
-        grid-template-columns: 1fr;
-    }
-    
-    .court-services {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .info-section {
-        padding: 2rem;
-        margin: 2rem 0;
-    }
-    
-    .court-introduction {
-        padding: 2rem;
+}
+@media (max-width: 480px) {
+    p, li {
+        line-height: 1.45;
     }
 }
 
+/* Small Mobile Breakpoint: ≤480px (Small Phones) */
 @media (max-width: 480px) {
-    section {
-        padding: 3rem 1rem;
+    /* HOME PAGE – Compare vs Counsel cards */
+    .home-section .service-card,
+    .home-section .comparison-card {
+    padding: 1rem;
+    margin: 0.75rem 0;
+    box-sizing: border-box;
+    }
+
+    /* Kill inherited grid weirdness */
+    .home-section .services-grid,
+    .home-section .comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    }
+
+    /* Normalize text inside */
+    .home-section .service-card p,
+    .home-section .comparison-card p {
+    margin: 0.5rem 0 0;
+    line-height: 1.4;
+    }
+
+    /* ===== HEADER FURTHER OPTIMIZATION ===== */
+    .court-chamber {
+        padding: 0.75rem 0.75rem 0.5rem;
+    }
+    
+    .court-chamber.scrolled {
+        padding: 0.4rem 0.75rem 0.2rem;
+    }
+    
+    .chamber-header {
+        gap: 0.75rem;
+    }
+    
+    .scales-icon {
+        font-size: 2rem;
+    }
+    
+    .court-chamber.scrolled .scales-icon {
+        font-size: 1.5rem;
     }
     
     .court-title {
         font-size: 1.8rem;
+        max-width: 90vw;          
+        width: 100%;
+        text-align: center;
+
+        /* text sanity */
+        white-space: normal;
+        word-break: normal;
+        overflow-wrap: break-word;
+        hyphens: none;
+
+        /* flex sanity */
+        flex-shrink: 0;
+    }
+    
+    .court-chamber.scrolled .court-title {
+        font-size: 1.3rem;
+        max-width: 90vw;
+    }
+    
+    /* ===== NAVIGATION ICON-ONLY ===== */
+    .header-navigation .tab-text {
+        display: none;
+    }
+    
+    .header-navigation .nav-tab {
+        padding: 0.6rem 0.25rem;
+        min-height: 40px;
+    }
+    
+    .header-navigation .tab-icon {
+        font-size: 1.3rem;
+    }
+    
+    /* ===== THEME TOGGLE SMALLER ===== */
+    .theme-toggle {
+        padding: 0.35rem 0.7rem;
+        min-width: 44px;
+        height: 32px;
+    }
+    
+    .theme-icon {
+        font-size: 1rem;
+    }
+    
+    /* ===== SECTION SPACING REDUCTION ===== */
+    section {
+        padding: 1.5rem 0.75rem;
+    }
+    
+    .court-proceedings section {
+        padding: 1.25rem 0.75rem;
+    }
+    
+    .home-section {
+        min-height: 60vh;
+    }
+    
+    /* ===== CARD PADDING REDUCTION ===== */
+    .court-introduction,
+    .info-section,
+    .precedents-section {
+        padding: 1.5rem 1rem;
+        margin: 1rem 0;
+    }
+    
+    .case-intake,
+    .project-context-section,
+    .options-section,
+    .advisory-form {
+        padding: 1.25rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .argument-card,
+    .evidence-card,
+    .rejected-card,
+    .service-card,
+    .comparison-card,
+    .philosophy-card,
+    .precedent-case {
+        padding: 1rem;
+        /* Fix card overflow */
+        box-sizing: border-box;
+        overflow: hidden;
+        width: 100%;
     }
     
     .ruling-card {
-        padding: 1.5rem 1rem;
+        padding: 1.25rem 1rem;
     }
     
-    .decision-option {
-        font-size: 2rem;
+    .consultation-memo {
+        padding: 1.25rem;
     }
     
-    .rationale-text {
-        font-size: 1.1rem;
-        padding: 0;
+    /* ===== TYPOGRAPHY FURTHER REDUCTION ===== */
+    .section-title {
+        font-size: 1.6rem;
     }
     
-    /* Home page mobile */
-    .home-section {
-        padding: 3rem 1rem;
-    }
-    
-    .court-introduction {
-        padding: 1.5rem;
-    }
-    
-    .info-section {
-        padding: 1.5rem;
-        margin: 1.5rem 0;
+    .intro-title {
+        font-size: 1.7rem;
     }
     
     .info-title {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
     
+    .decision-option {
+        font-size: 1.8rem;
+    }
+    
+    .rationale-text {
+        font-size: 0.95rem;
+    }
+    
+    .court-motto-large {
+        font-size: 1.1rem;
+        padding: 1rem;
+    }
+    
+    /* ===== BUTTON ADJUSTMENTS ===== */
+    .submit-case-btn,
+    .enter-court-btn {
+        padding: 0.875rem 1.25rem;
+        font-size: 0.95rem;
+    }
+    
+    .new-case-btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    /* ===== FORM ELEMENTS SMALLER ===== */
+    .form-input,
+    .option-input,
+    .theme-input {
+        padding: 0.875rem;
+        min-height: 70px;
+        font-size: 16px; /* Maintain to prevent zoom */
+    }
+    
+    .mcq-option {
+        padding: 0.875rem;
+    }
+    
+    .case-type-btn,
+    .judge-btn {
+        padding: 1rem 0.75rem;
+    }
+    
+    /* ===== STEP NUMBERS ===== */
     .step-number {
         width: 2rem;
         height: 2rem;
         font-size: 1rem;
     }
+    
+    /* ===== COURT ACTIONS ===== */
+    .court-actions {
+        margin-top: 1.25rem;
+        padding-top: 1rem;
+    }
+    
+    /* ===== PRECEDENT CASES ===== */
+    .precedent-cases {
+        margin-top: 1.5rem;
+        padding-top: 1.25rem;
+    }
+    
+    .precedent-title {
+        font-size: 1.2rem;
+    }
 }
+
+
 
 /* Utility Classes */
 .hidden {
@@ -1412,25 +1869,9 @@ section {
     left: 100%;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .new-case-btn {
-        padding: 1rem 1.25rem;
-        font-size: 0.85rem;
-    }
-}
+/* Responsive adjustments - consolidated into main mobile section above */
 
-@media (max-width: 480px) {
-    .court-actions {
-        margin-top: 1.5rem;
-        padding-top: 1rem;
-    }
-    
-    .new-case-btn {
-        padding: 0.875rem 1rem;
-        font-size: 0.8rem;
-    }
-}
+/* Responsive adjustments - consolidated into main mobile section above */
 /* Precedent Cases Section */
 .precedent-cases {
     margin-top: 2.5rem;
@@ -1570,38 +2011,9 @@ section {
     pointer-events: none;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .precedent-grid {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
-    }
-    
-    .precedent-case {
-        padding: 0.875rem;
-    }
-    
-    .case-type-badge {
-        position: static;
-        display: inline-block;
-        margin-top: 0.5rem;
-    }
-}
+/* Responsive adjustments - consolidated into main mobile section above */
 
-@media (max-width: 480px) {
-    .precedent-cases {
-        margin-top: 2rem;
-        padding-top: 1.5rem;
-    }
-    
-    .precedent-title {
-        font-size: 1.2rem;
-    }
-    
-    .precedent-case {
-        padding: 0.75rem;
-    }
-}
+/* Responsive adjustments - consolidated into main mobile section above */
 
 /* Navigation Tabs - Law Firm Style (HIDDEN - Now in header) */
 .court-navigation {
@@ -2339,64 +2751,9 @@ section {
     line-height: 1.4;
 }
 
-/* Responsive Design for Tabs */
-@media (max-width: 768px) {
-    .nav-tabs {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    
-    .nav-tab {
-        min-width: auto;
-        flex: none;
-    }
-    
-    .intro-title {
-        font-size: 2rem;
-    }
-    
-    .court-services {
-        grid-template-columns: 1fr;
-    }
-    
-    .mcq-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .options-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .home-section {
-        padding: 2rem 1rem;
-    }
-    
-    .project-context-section,
-    .options-section,
-    .advisory-form {
-        padding: 1.5rem;
-    }
-}
+/* Responsive Design for Tabs - consolidated into main mobile section above */
 
-@media (max-width: 480px) {
-    .tab-text {
-        display: none;
-    }
-    
-    .nav-tab {
-        min-width: 60px;
-        padding: 0.75rem 0.5rem;
-    }
-    
-    .intro-title {
-        font-size: 1.8rem;
-    }
-    
-    .court-motto-large {
-        font-size: 1.2rem;
-        padding: 1rem;
-    }
-}
+/* Responsive Design for Tabs - consolidated into main mobile section above */
 /* Premium Entrance Animations */
 @keyframes fadeInUp {
     from {
@@ -2465,39 +2822,110 @@ section {
 .recommended-stack-section {
     transition: opacity 600ms ease-out, transform 600ms ease-out;
 }
-
-/* Responsive Design Updates for Navigation */
 @media (max-width: 768px) {
-    .nav-tabs {
-        gap: 2rem;
-        flex-wrap: wrap;
-        justify-content: center;
+    .home-section,
+    .home-section > *,
+    .court-introduction {
+        max-width: 100% !important;
+        width: 100% !important;
     }
-    
-    .nav-tab {
-        padding: 0.75rem 0;
-    }
-    
-    .tab-text {
-        font-size: 0.85rem;
-    }
-}
+}/* ========================================
+   MOBILE HOMEPAGE SANITY PATCH
+   ======================================== */
+@media (max-width: 768px) {
 
-@media (max-width: 480px) {
-    .nav-tabs {
-        gap: 1.5rem;
+  /* Lock homepage width */
+  .home-section {
+    padding: 2rem 1rem !important;
+    overflow-x: hidden;
+  }
+
+  /* HERO / INTRO CONTAINER */
+  .court-introduction {
+    padding: 1.5rem 1.25rem !important;
+    max-width: 100% !important;
+  }
+
+  /* HERO TITLE — THIS IS THE MAIN FIX */
+  .intro-title {
+    font-size: clamp(2rem, 7vw, 2.6rem) !important;
+    line-height: 1.15;
+    text-align: center;
+
+    /* force sane wrapping */
+    max-width: 14ch;
+    margin-left: auto;
+    margin-right: auto;
+
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: break-word;
+    hyphens: none;
+    text-wrap: balance;
+  }
+
+  /* HERO SUBTEXT */
+  .court-description {
+    font-size: 1rem;
+    line-height: 1.55;
+    max-width: 34ch;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  /* SERVICES / COMPARE / COUNSEL */
+  .court-services,
+  .comparison-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+
+  /* CARDS */
+  .service-card,
+  .comparison-card {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1.25rem !important;
+  }
+
+    /* Header container must be relative */
+    .court-chamber {
+        position: relative;
+        overflow-x: hidden;
     }
-    
-    .tab-text {
-        display: none;
+
+    /* Seal container: left-aligned, bounded */
+    .court-seal {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        width: 100%;
+        max-width: 100%;
+        padding-left: 1rem;
+        margin: 0;
+
+        box-sizing: border-box;
     }
-    
-    .nav-tab {
-        min-width: 50px;
-        padding: 0.75rem 0.5rem;
+
+    /* Scales icon: LOCK IT */
+    .scales-icon {
+        font-size: clamp(2rem, 6vw, 2.4rem);
+        line-height: 1;
+
+        position: relative;
+        left: 0;
+
+        margin: 0;
+        padding: 0;
+
+        flex-shrink: 0;
+        }
     }
-    
-    .tab-icon {
-        font-size: 1.2rem;
-    }
-}
+
+
+
+/* Responsive Design Updates for Navigation - consolidated into main mobile section above */
+
+/* Responsive Design Updates for Navigation - consolidated into main mobile section above */

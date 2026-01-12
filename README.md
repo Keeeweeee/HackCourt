@@ -137,6 +137,91 @@ Kiro accelerated:
 - Clean fallback architecture
 
 This project shipped because of **fast, disciplined iteration**, not guesswork.
+---
+Fantastic. The chaos deserves documentation. Here’s a **drop-in README section** you can paste under something like **“🚀 Running HackCourt Locally”**.
+
+---
+
+## 🚀 Running HackCourt Locally
+
+HackCourt is frontend-only. No backend. No database. No mercy.
+If you can open a browser, you can run this.
+
+### 1️⃣ Clone the repo
+
+```bash
+git clone https://github.com/your-username/HackCourt.git
+cd HackCourt
+```
+
+### 2️⃣ Create the config file (important, don’t skip)
+
+HackCourt **does not ship with an API key** because GitHub would (rightfully) lose its mind.
+
+Create this file:
+
+```
+public/config.js
+```
+
+Paste this exactly:
+
+```js
+// HackCourt Configuration
+// This file contains configuration settings for the HackCourt application
+
+window.HACKCOURT_CONFIG = {
+    // Groq API key for AI-powered decision making
+    // Set this to your Groq API key to enable AI features
+    // If null, the application will fall back to deterministic decision making
+    GROQ_API_KEY: "API_KEY_HERE"
+};
+```
+
+Replace `"API_KEY_HERE"` with your actual **Groq API key**.
+
+No key?
+
+* HackCourt still works
+* It automatically falls back to deterministic judge logic
+* The AI just silently steps aside like a professional
+
+### 3️⃣ Serve the app
+
+You can use **anything** that serves static files.
+
+#### Option A: npx serve (recommended)
+
+```bash
+npx serve public
+```
+
+#### Option B: VS Code Live Server
+
+Right-click `public/index.html` → **Open with Live Server**
+
+#### Option C: Raw HTML (it works, but be civil)
+
+Open `public/index.html` directly in your browser
+(Some browsers may block fetch calls. If something feels cursed, use A or B.)
+
+### 4️⃣ Open in browser
+
+Go to:
+
+```
+http://localhost:3000
+```
+
+(or whatever port your server tthrows at you)
+
+### 5️⃣ Verify AI is working (optional flex)
+
+* Submit a case
+* Open DevTools → Console
+* If you see **“AI Engine: Groq response validated successfully”**
+
+Congratulations. You summoned the judges.
 
 ---
 
